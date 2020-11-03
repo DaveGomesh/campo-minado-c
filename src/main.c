@@ -2,16 +2,16 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "campominado.h"
+#include "campo-minado.h"
 
 void exibirMenu();
-void jogar(int dificuldade);
+void jogar();
 void exibirInstucoes();
-int  definirDificuldade(int dificuldade);
+void definirDificuldadeJogo(Jogo * campoMinado);
 
 int main(){
     srand(time(NULL));
-    int opcao, dificuldade=FACIL;
+    int opcao;
 
     do{
         //Inicia a função que exibe o menu
@@ -22,17 +22,12 @@ int main(){
         switch(opcao){
             case 1:
                 //Caso o numero 1 seja digitado, será iniciado o jogo
-                jogar(dificuldade);
+                jogar();
                 break;
             
             case 2:
                 //Caso o numero 2 seja digitado, será mostrada as instruções do jogo
                 exibirInstucoes();
-                break;
-            
-            case 3:
-                //Caso o numero 3 seja digitado, será definida a dificuldade
-                dificuldade = definirDificuldade(dificuldade);
                 break;
 
             case 4:
@@ -66,14 +61,16 @@ void exibirMenu(){
 }
 
 //Funcao que inicia o jogo
-void jogar(int dificuldade){
+void jogar(){
     Jogo campoMinado;
     int resultado;
+
+    definirDificuldadeJogo(&campoMinado);
 
     system("cls");
 
     //Chama a função que inicializa e gera o campo
-    incializarCampoMinado(&campoMinado, dificuldade);
+    incializarCampoMinado(&campoMinado);
     //Chama a função que mostra o campo     
     exibirCampo(&campoMinado);
 
@@ -123,12 +120,12 @@ void exibirInstucoes(){
 }
 
 // Funcao que define a dificuldade
-int definirDificuldade(int dificuldade){
+void definirDificuldadeJogo(Jogo * campoMinado){
     int opcao=0;
 
     do{
         system("cls");
-        printf("DIFICULDADE ATUAL: %d BOMBAS\n", dificuldade);
+        printf("DIFICULDADE ATUAL: %i BOMBAS\n");
 
         printf("ESCOLHA A DIFICULDADE:\n");
         printf("1 - FACIL(10 BOMBAS)\n");
@@ -141,18 +138,24 @@ int definirDificuldade(int dificuldade){
 
         switch(opcao){
             case 1:
-                dificuldade = FACIL;
+                definirDificuldade(campoMinado, FACIL);
                 break;
 
             case 2:
-                dificuldade = MEDIO;
+                definirDificuldade(campoMinado, MEDIO);
                 break;
             
             case 3:
-                dificuldade = DIFICIL;
+                definirDificuldade(campoMinado, DIFICIL);
                 break;
 
-            case 0:
+            case 4:
+                definirDificuldade(campoMinado, EXTREMO);
+                break;
+
+            case 0:;
+                Dimensoes d = {30, 30};
+                definirDificuldadePerson(campoMinado, d, 270);
                 break;
 
             default:
@@ -163,6 +166,4 @@ int definirDificuldade(int dificuldade){
     printf("\n---Definido!---\n");
 
     system("pause");
-
-    return dificuldade;
 }
