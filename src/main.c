@@ -155,7 +155,7 @@ void definirDificuldadeJogo(Jogo * campoMinado){
 
             case 0:;
                 Dimensoes d = {30, 30};
-                definirDificuldadePerson(campoMinado, d, 270);
+                definirDificuldadePerson(campoMinado, d, 10);
                 break;
 
             default:

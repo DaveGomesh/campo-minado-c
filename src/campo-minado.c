@@ -102,17 +102,13 @@ void gerarBombas(Jogo * campoMinado){
     int lin, col;
 
     while(quantBombas < QUANT_BOMBAS){
-        numAleatorio = rand() % 2; //Gera um numero entre 0 e 1
+        //Gera posicoes aleatorias entre 1 e a posicao maxima
+        lin = 1 + rand() % ALTURA-2;
+        col = 1 + rand() % LARGURA-2;
 
-        if(numAleatorio == 1){
-            //Gera posicoes aleatorias entre 1 e a posicao maxima
-            lin = 1 + rand() % ALTURA-2;
-            col = 1 + rand() % LARGURA-2;
-
-            if(campo(lin, col) == VAZIO){ //Se nao tiver bomba, coloca uma bomba
-                campo(lin, col) = BOMBA; //9 == Bomba
-                quantBombas++;
-            }
+        if(campo(lin, col) == VAZIO){ //Se nao tiver bomba, coloca uma bomba
+            campo(lin, col) = BOMBA; //9 == Bomba
+            quantBombas++;
         }
     }
 }

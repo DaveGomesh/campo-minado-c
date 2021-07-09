@@ -69,14 +69,4 @@ void analisarEspacos(Jogo * campoMinado, Coordenadas coord);
 
 int fazerJogada(Jogo * campoMinado);
 
-
 #endif /*CAMPOMINADO_H_INCLUDED */
-
-/*
-    Facil:   9x9    10 minas
-    Medio:   16x16  40 minas
-    Dificil: 24x20  99 minas
-    Extremo: 30x24  180 minas
-
-    Quantidade maxima de bombas = area das dimensoes - 30%
-*/
